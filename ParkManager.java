@@ -38,36 +38,44 @@ public class ParkManager {
             return attributes.toArray(new String[0]);
         }
 
-    public void displayAllParks(String filePath) {
+
+    public void readParksFile(String filePath){
         try {
             File myFile = new File(filePath);
             Scanner scanner = new Scanner(myFile);
 
-        if (!scanner.hasNext()) {
-            System.out.println("Error: File is empty");
-        return;
-    }
-        if (!myFile.exists()) {
-            System.out.println("The file does not exist.");
-        return;
-    }
-        scanner.nextLine(); //skips header
-        System.out.println("Here are the parks listed closest to your location:\n"); 
+            if (!scanner.hasNext()) {
+                System.out.println("Error: File is empty");
+                return;
+            }
+            if (!myFile.exists()) {
+                System.out.println("The file does not exist.");
+                return;
+            }
+            scanner.nextLine(); //skips header
+            System.out.println("Here are the parks listed closest to your location:\n"); 
             //ADD CODE TO PAUSE THE PROGRAM FOR A BIT SO THE USER CAN ACTUALLY READ IT BEFORE GETTING BOMBARDED WITH INFO (maybe like a "Loading..." message and using Thread.sleep)
+            while (scanner.hasNextLine()) {
 
-        while (scanner.hasNextLine()) {
-            
-            String line = scanner.nextLine();
-            String[] parts = parseLine(line);
+                String line = scanner.nextLine();
+                String[] parts = parseLine(line);
 
-            String parkName = parts[1];
-            String address = parts[3];
-            String amenities = parts[2];
-            double longitude = Double.parseDouble(parts[4]);
-            double latitude = Double.parseDouble(parts[5]);
+                String parkName = parts[1];
+                String address = parts[3];
+                String amenities = parts[2];
+                double longitude = Double.parseDouble(parts[4]);
+                double latitude = Double.parseDouble(parts[5]);
 
-            this.parks.add(new Park(parkName, address, amenities, latitude, longitude));
+                this.parks.add(new Park(parkName, address, amenities, latitude, longitude));
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+        }
+        
     }
+
+    
+    public void displayAllParks() {
 
     for (int i = 0; i < this.parks.size(); i++) { // displays park attributes
         Park park = this.parks.get(i);
@@ -79,8 +87,20 @@ public class ParkManager {
         }
         System.out.println("");
     }
-} catch (FileNotFoundException e) {
-        System.out.println("File not found: " + e.getMessage());
+
+    }
+    //WORK IN PROGRESS BELOW
+    public void displayAllParksByDistance(User user) {
+        orderByDistance(this.parks, user.getLatitude(), user.getLongitude());
+        for (int i = 0; i < this.parks.size(); i++) { // displays park attributes
+            Park park = this.parks.get(i);
+            System.out.printf("Park ID: %d\n", i + 1); // +1 because we start at 0
+            System.out.print(park);
+    
+            for (int j = 0; j < 100; j++) { // line separator
+                System.out.print("-");
+            }
+            System.out.println("");
         }
     }
 
