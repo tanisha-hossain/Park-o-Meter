@@ -7,15 +7,17 @@ public class Park {
     private String amenities;
     private double latitude;
     private double longitude;
-    private int rating;
+    private ArrayList<Integer> ratings;
+    private ArrayList<Review> reviews;
 
-    public Park(String parkName, String address, String amenities, double latitude, double longitude, int rating) {
+    public Park(String parkName, String address, String amenities, double latitude, double longitude) { 
         this.parkName = parkName;
         this.address = address;
         this.amenities = amenities;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.rating = rating;
+        this.ratings = new ArrayList<>();
+        this.reviews = new ArrayList<>();
     }
 
     public String getParkName() {
@@ -38,15 +40,51 @@ public class Park {
         return longitude;
     }
 
-    public int getRating() {
-        return rating;
+    /*public ArrayList<Integer> getRatings() {
+        return ratings;
+    }*/
+
+    public void addRating(int rating) {
+        if (rating >= 1 && rating <= 5) {
+            ratings.add(rating);
+        }else{
+            System.out.println("Please enter a rating between 1 and 5!");
+        }
     }
 
-    /*@Override
+    public double getAverageRating(){
+        if(ratings.size()==0){
+            return 0;
+        } 
+
+        int sum = 0;
+        for(int rating: ratings){
+            sum += rating;  
+        }
+        return (double) sum / ratings.size();
+    }
+
+    public String getReviews() {
+        if (reviews.isEmpty()) {
+            return "";
+        }
+        String revlist = "";
+        for (Review rev: reviews) {
+            revlist += rev.toString();
+        }
+        return revlist;
+    }
+
+    public void addReview(Review review){
+        reviews.add(review);
+    }
+
+
+
+    @Override
     public String toString() {
-        return String.format("%s | %s | %s | %f | %f",
-                parkName, address, amenities, latitude, longitude);
-    }*/
+        return String.format("Name: %s\nAddress: %s\nAmenities: %s\nLongitude: %f\nLatitude: %f\nRating: %f\nReviews:\n%s\n", parkName, address, amenities, longitude, latitude, getAverageRating(), getReviews());
+    }
 }
 
 
