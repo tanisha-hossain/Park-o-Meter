@@ -16,6 +16,14 @@ public class User {
         return username;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
     public double[] getCoordinates() {
         return new double[]{latitude, longitude};
     }
