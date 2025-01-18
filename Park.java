@@ -9,6 +9,7 @@ public class Park {
     private double longitude;
     private ArrayList<Integer> ratings;
     private ArrayList<Review> reviews;
+    private double distance;
 
     public Park(String parkName, String address, String amenities, double latitude, double longitude) { 
         this.parkName = parkName;
@@ -40,9 +41,13 @@ public class Park {
         return longitude;
     }
 
-    /*public ArrayList<Integer> getRatings() {
-        return ratings;
-    }*/
+    public double getDistance(){
+        return distance;
+    }
+    
+    public void setDistance(double distance){
+        this.distance = distance;
+    }
 
     public void addRating(int rating) {
         if (rating >= 1 && rating <= 5) {
@@ -83,9 +88,6 @@ public class Park {
 
     @Override
     public String toString() {
-        return String.format("Name: %s\nAddress: %s\nAmenities: %s\nLongitude: %f\nLatitude: %f\nRating: %f\nReviews:\n%s\n", parkName, address, amenities, longitude, latitude, getAverageRating(), getReviews());
+        return String.format("\nName: %s\nAddress: %s\nAmenities: %s\nLongitude: %f\nLatitude: %f\nDistance: %.2f units\nRating: %f\nReviews:\n%s\n", parkName, address, amenities, longitude, latitude, distance, getAverageRating(), getReviews());
     }
 }
-
-
-
