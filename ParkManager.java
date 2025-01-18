@@ -53,7 +53,8 @@ public class ParkManager {
                 return;
             }
             scanner.nextLine(); //skips header
-            System.out.println("Here are the parks listed closest to your location:\n"); 
+            //System.out.println("Here are the parks listed closest to your location:\n"); 
+            
             //ADD CODE TO PAUSE THE PROGRAM FOR A BIT SO THE USER CAN ACTUALLY READ IT BEFORE GETTING BOMBARDED WITH INFO (maybe like a "Loading..." message and using Thread.sleep)
             while (scanner.hasNextLine()) {
 
@@ -94,7 +95,7 @@ public class ParkManager {
         orderByDistance(this.parks, user.getLatitude(), user.getLongitude());
         for (int i = 0; i < this.parks.size(); i++) { // displays park attributes
             Park park = this.parks.get(i);
-            System.out.printf("Park ID: %d\n", i + 1); // +1 because we start at 0
+            System.out.printf("\nPark ID: %d\n", i + 1); // +1 because we start at 0
             System.out.print(park);
     
             for (int j = 0; j < 100; j++) { // line separator
@@ -181,7 +182,8 @@ public class ParkManager {
         System.out.println("Parks ordered by closest distance:");
         for (Park park : parkList) {
             double distance = calculateDistance(userLatitude, userLongitude, park.getLatitude(), park.getLongitude());
-            System.out.printf("%s - Distance: %.2f units\n", park.getParkName(), distance);
+            //System.out.printf("%s - Distance: %.2f units\n", park.getParkName(), distance);
+            park.setDistance(distance);
         }
     }
 
@@ -210,6 +212,16 @@ public class ParkManager {
 
     private double calculateDistance(double x1, double y1, double x2, double y2) {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+    
+    //////
+    public Park findParkByName(String parkName) {
+        for (Park park : parks) {
+            if (park.getParkName().equalsIgnoreCase(parkName)) {
+                return park;
+            }
+        }
+        return null;
     }
 }
     
