@@ -59,7 +59,7 @@ public class Park {
 		if (rating >= 1 && rating <= 5) {
 			this.ratings.add(rating);
 		} else {
-			System.out.println("Please enter a rating between 1 and 5!");
+			System.out.println(color.greenText + "Please enter a rating between 1 and 5!");
 		}
 	}
 
