@@ -5,4 +5,4 @@ To run the program you will need a Java IDE. java.util and java.io libraries wer
 
 Please note that this program was coded on Repl.it and OnlineGDB, so user may need to get Java Development Kit before running on platforms such as VSC.
 
-Have fun!
+Have fun! Keep in mind that this program is a work in progress - future advancements to come!
