@@ -23,5 +23,3 @@ public class Review {
         return username + " says '" + text + "'\n";
     }
 }
-
-
