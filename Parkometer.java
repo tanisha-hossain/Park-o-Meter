@@ -9,7 +9,7 @@ Ethics Declaration: "This code is our own work"
 import java.util.*;
 import java.io.*;
 
-public class Main {
+public class Parkometer {
     public static void main(String[] args) {
         System.out.println("Welcome to Park-O-Meter!");
         Scanner userInput = new Scanner(System.in);
