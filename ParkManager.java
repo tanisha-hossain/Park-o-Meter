@@ -85,9 +85,9 @@ public class ParkManager {
             System.out.print(park);
     
             for (int j = 0; j < 100; j++) { // line separator
-                System.out.print("-");
+                System.out.print(color.whiteText + "-");
             }
-            System.out.println("");
+            System.out.println(color.magentaText + "");
         }
     }
     
@@ -99,9 +99,9 @@ public class ParkManager {
             System.out.print(park);
     
             for (int j = 0; j < 100; j++) { // line separator
-                System.out.print("-");
+                System.out.print(color.whiteText + "-");
             }
-            System.out.println("");
+            System.out.println(color.magentaText + "");
         }
     }
     
@@ -114,9 +114,9 @@ public class ParkManager {
             System.out.print(park);
     
             for (int j = 0; j < 100; j++) { // line separator
-                System.out.print("-");
+                System.out.print(color.whiteText + "-");
             }
-            System.out.println("");
+            System.out.println(color.magentaText + "");
         }
     }
 
@@ -126,35 +126,35 @@ public class ParkManager {
 
         while (!validPark) {
             try {
-                System.out.println("Enter the park ID of the park you want to rate:");
+                System.out.println(color.greenText + "Enter the park ID of the park you want to rate:");
                 int parkId = input.nextInt();
 
                 if (parkId > 0 && parkId <= parks.size()) {
                     boolean validRating = false; // flag for rating validation
 
                     while (!validRating) {
-                        System.out.println("Enter your rating (1-5):");
+                        System.out.println(color.greenText + "Enter your rating (1-5):");
                         int rating = input.nextInt();
 
                         if (rating >= 1 && rating <= 5) {
                             for (Park park : this.parks) {
                                 if (park.getParkID() == parkId) {
                                     park.addRating(rating);
-                                    System.out.printf("Thank you for your rating! The updated rating for %s is %.2f\n",
+                                    System.out.printf(color.greenText + "Thank you for your rating! The updated rating for %s is %.2f\n",
                                             park.getParkName(), park.getAverageRating());
                                     validPark = true;
                                 }
                             }
                             validRating = true;
                         } else {
-                            System.out.println("Please enter a rating between 1 and 5!");
+                            System.out.println(color.redText + "Please enter a rating between 1 and 5!");
                         }
                     }
                 } else {
-                    System.out.println("Invalid park ID. Please try again.");
+                    System.out.println(color.redText + "Invalid park ID. Please try again.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a numeric value.");
+                System.out.println(color.redText + "Invalid input. Please enter a numeric value.");
                 input.nextLine(); // clear the invalid input
             }
         }
@@ -166,28 +166,28 @@ public class ParkManager {
 
         while (!validPark) {
             try {
-                System.out.println("Enter the park ID of the park you want to leave a review for:");
+                System.out.println(color.greenText + "Enter the park ID of the park you want to leave a review for:");
                 int parkId = input.nextInt();
 
                 if (parkId > 0 && parkId <= parks.size()) {
                     for (Park park : this.parks) {
                         if (park.getParkID() == parkId) {
-                            System.out.println("Enter your review:");
+                            System.out.println(color.greenText + "Enter your review:");
                             input.nextLine(); // clear the newline character
                             String text = input.nextLine();
                             
                             Review review = new Review(user.getUsername(), text);
                             park.addReview(review);
-                            System.out.printf("Thank you for your review! The updated reviews for %s are:\n%s\n",
+                            System.out.printf(color.yellowText + "Thank you for your review! The updated reviews for %s are:\n%s\n",
                                     park.getParkName(), park.getReviews());
                             validPark = true; 
                         }
                     }
                 } else {
-                    System.out.println("Invalid park ID. Please try again.");
+                    System.out.println(color.redText + "Invalid park ID. Please try again.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a numeric value.");
+                System.out.println(color.redText + "Invalid input. Please enter a numeric value.");
                 input.nextLine(); // clear the invalid input
             }
         }
@@ -196,7 +196,7 @@ public class ParkManager {
     // ORDER BY IDS
     public void orderByID(List<Park> parkList) {
         quickSortByID(parkList, 0, parkList.size() - 1);
-        System.out.println("Parks ordered by their Park ID:");
+        System.out.println(color.magentaText + "Parks ordered by their Park ID:");
     }
     
     private void quickSortByID(List<Park> parks, int low, int high) {
@@ -230,7 +230,7 @@ public class ParkManager {
         calculateAllDistances(parkList, userLatitude, userLongitude);
         quickSortByDistance(parkList, 0, parkList.size() - 1, userLatitude, userLongitude);
 
-        System.out.println("Parks ordered by closest distance:");
+        System.out.println(color.boldText + color.magentaText + "Parks ordered by closest distance:" + color.unbold);
     }
     
     private void quickSortByDistance(List<Park> parks, int low, int high, double userLatitude, double userLongitude) {
@@ -273,7 +273,7 @@ public class ParkManager {
     // ORDER BY RATINGS
     public void orderByRating(List<Park> parkList) {
         quickSortByRating(parkList, 0, parkList.size() - 1);
-        System.out.println("Parks ordered by their Rating:");
+        System.out.println(color.boldText + color.magentaText + "Parks ordered by their Rating:" + color.unbold);
     }
     
     public static void quickSortByRating(List<Park> parks, int low, int high) {
@@ -303,17 +303,17 @@ public class ParkManager {
     
     // allows users to choose to only display parks that meet a certain rating or with a certain amenity
     public static void filterParks(Scanner userInput, ParkManager manager) {
-        System.out.println("\nWould you like to filter parks by ratings or an amenity:");
-        System.out.println("1. Highest Ratings");
-        System.out.println("2. Specific Amenities");
-        System.out.print("Enter your choice: ");
+        System.out.println(color.greenText + "\nWould you like to filter parks by ratings or an amenity:");
+        System.out.println(color.greenText + "1. Highest Ratings");
+        System.out.println(color.greenText + "2. Specific Amenities");
+        System.out.print(color.greenText + "Enter your choice: ");
 
         int choice = userInput.nextInt();
         userInput.nextLine();
 
         switch (choice) {
             case 1: // show all parks with an average rating equal or above the specified user rating
-                System.out.print("Set minimum rating to filter by (1-5, integer only): ");
+                System.out.print(color.magentaText + "Set minimum rating to filter by (1-5, integer only): ");
                 int minRating = userInput.nextInt();
                 
                 boolean noParks_rating = true;
@@ -329,11 +329,11 @@ public class ParkManager {
                 }
                 
                 if(noParks_rating) {
-                    System.out.println("There are no parks known to have this rating or above.");
+                    System.out.println(color.redText + "There are no parks known to have this rating or above.");
                 }
                 break;
             case 2: // shows all parks with the amenity the user searche dfor
-                System.out.print("Enter the amenity you are looking for: ");
+                System.out.print(color.greenText + "Enter the amenity you are looking for: ");
                 String amenity = userInput.nextLine();
                 
                 boolean noParks_amenity = true;
@@ -349,22 +349,22 @@ public class ParkManager {
                 }
                 
                 if(noParks_amenity) {
-                    System.out.println("There are no parks known to have those amenities.");
+                    System.out.println(color.redText + "There are no parks known to have those amenities.");
                 }
                 break;
             default:
-                System.out.println("Invalid choice. Returning to main menu.");
+                System.out.println(color.redText + "Invalid choice. Returning to main menu.");
                 break;
         }
     }
 
     // the method below creates a park loop for the user using a starting park and the 4 other closest ones
     public static void generateParkLoop(Scanner userInput, User user, ParkManager manager) {
-        System.out.println("\nWhich park are you at right now? Or which one will you go to first?");
-        System.out.println("1. Enter by name of Park");
-        System.out.println("2. Enter by address of Park");
-        System.out.println("3. I don't know...just find the park nearest to me!");
-        System.out.print("Enter your choice: ");
+        System.out.println(color.greenText + "\nWhich park are you at right now? Or which one will you go to first?");
+        System.out.println(color.greenText + "1. Enter by name of Park");
+        System.out.println(color.greenText + "2. Enter by address of Park");
+        System.out.println(color.greenText + "3. I don't know...just find the park nearest to me!");
+        System.out.print(color.greenText + "Enter your choice: ");
 
         int choice = userInput.nextInt();
         userInput.nextLine();
@@ -372,12 +372,12 @@ public class ParkManager {
         Park firstPark = null; // initialize Park instancr temporarily to null
         switch (choice) {
             case 1: // ask for park name
-                System.out.print("Enter first park name: ");
+                System.out.print(color.greenText + "Enter first park name: ");
                 String firstParkName = userInput.nextLine();
                 firstPark = manager.findParkByName(firstParkName);
                 break;
             case 2: // ask for park address
-                System.out.print("Enter first park address: ");
+                System.out.print(color.greenText + "Enter first park address: ");
                 String firstParkAddress = userInput.nextLine();
                 firstPark = manager.findParkByAddress(firstParkAddress);
                 break;
@@ -385,18 +385,18 @@ public class ParkManager {
                 manager.orderByDistance(manager.getParks(), user.getLatitude(), user.getLongitude());
                 firstPark = manager.getParks().get(0);
             default:
-                System.out.println("Invalid choice. Returning to main menu.");
+                System.out.println(color.redText + "Invalid choice. Returning to main menu.");
                 break;
         }
         
         if (firstPark == null) {
-            System.out.println("Park not found. Returning to main menu.");
+            System.out.println(color.redText + "Park not found. Returning to main menu.");
             return;
         }
 
         List<Park> nearbyParks = new ArrayList<>(manager.getParks()); //new copy of the parks list (not tampering with the original)
         manager.orderByDistance(nearbyParks, firstPark.getLatitude(), firstPark.getLongitude());
-        System.out.println("Here is your customized park loop:");
+        System.out.println(color.yellowText + "Here is your customized park loop:");
         for (int i = 0; i < 5; i++) { // Limit loop to 5 parks
             System.out.println(nearbyParks.get(i));
         }
@@ -422,5 +422,4 @@ public class ParkManager {
         return null;
     }
 
-}
-    
+}  
