@@ -2,8 +2,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 
-//REMINDER: the displayAllParks method works to show them all rn but we might wanna try making the displayParkInfo one so when users leave reviews it shows up under the specific parks info box
-//also we should try coding a way for cleaning up the code of the original spreadsheet so if we decide to add more parks we dont gotta manually do it
+
 public class ParkManager {
     private List<Park> parks;
 
