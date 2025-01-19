@@ -1,0 +1,68 @@
+PARKS.JAVA IMPORTANT METHODS:
+
+ addRating(rating):
+    if rating equal to or between 1 and 5:
+        ADD rating to ratings list
+    else:
+        print "Invalid rating"
+
+ getAverageRating():
+    if ratings list is empty:
+        return 0
+    initialize sum variable to 0
+    for each rating in ratings:
+        sum += rating
+    return sum / size of ratings list
+
+ getRatingsDistribution():
+    make an array called ratingCounts that holds 5 elements that are all set to 0
+    for each rating in ratings:
+        add +1 to count of particular rating given
+    return ratingCounts (to print in park profile)
+ 
+
+PARKMANAGER.JAVA IMPORTANT METHODS:
+
+readParksFile(filePath):
+    open file named "filePath" 
+    for each line in the file:
+        parse line to get park details
+        create a Park object with the obtained details
+        add Park object to parks list
+
+displayAllParksByDistance(user):
+    make and call orderByDistance(parks, user.latitude, user.longitude)
+    display parks sorted by distance
+
+displayAllParksByRating(user):
+    make and call orderByRating(parks)
+    display parks sorted by rating
+
+ratePark(input):
+    while user has not entered a valid park ID:
+        ask user for park ID
+        if park ID is valid:
+            ask user for rating
+            if rating is valid:
+                add rating to the selected park
+            else:
+                print "Invalid rating"
+
+leaveReview(input, user):
+    while user has not entered a valid park ID:
+        ask user for park ID
+        if park ID is valid:
+            ask user for review text
+            add review to the selected park
+
+orderByDistance(parks, userLatitude, userLongitude):
+    call calculateAllDistances method
+    call quickSortByDistance method
+
+calculateAllDistances(parks, userLatitude, userLongitude):
+    for each park in parks:
+        calculate distance between user coordinates and park coordinates:
+          use distance formula
+          
+quickSortByDistance(parks userLatitude, userLongitude, low, hgih):
+  use quicksort algorithm from online reference
